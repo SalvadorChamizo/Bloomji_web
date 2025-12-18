@@ -4,8 +4,6 @@ import styles from "./Logo.module.css";
 
 const INACTIVITY_DELAY = 500;
 
-type IdleAction = () => void;
-
 export default function Logo() {
     const pupilRefs = useRef<HTMLDivElement[]>([]);
     const inactivityTimer = useRef<number | null>(null);
@@ -59,7 +57,7 @@ export default function Logo() {
     useEffect(() => {
         const timer = setTimeout(() => {
             setIsActive(true);
-        }, 6000);
+        }, 4000);
         return () => clearTimeout(timer);
     }, []);
     
