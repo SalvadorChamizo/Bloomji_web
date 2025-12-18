@@ -17,10 +17,10 @@ function Header({ className }: HeaderProps) {
             <nav className={styles.desktopNav}>
                 <ul className={styles.navList}>
                     <li>
-                        <NavLink to="/about" className={({ isActive}) => isActive ? styles.active : styles.link}>Quienes somos</NavLink>
+                        <NavLink to="/about" className={styles.link}>¿Qué es Bloomji?</NavLink>
                     </li>
                     <li>
-                        <NavLink to="/Contact" className={({ isActive}) => isActive ? styles.active : styles.link}>Contacto</NavLink>
+                        <NavLink to="/Contact" className={styles.link}>Contacto</NavLink>
                     </li>
                 </ul>
             </nav>
