@@ -42,3 +42,17 @@
     border-radius: 50%;
     transition: transform 0.15s ease-out;
 }
+
+.pupil::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: var(--color-bg);
+    transform: ScaleY(0);
+    transform-origin: top;
+    transition: transform 0.12s ease-in;
+}
+
+.blink .pupil::after {
+    transform: scaleY(1);
+}
