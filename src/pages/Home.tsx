@@ -1,9 +1,8 @@
-import React from 'react';
-import Hero from '../components/Hero';
+import MainLayout from "../layouts/MainLayout";
+import Hero from "../components/Hero";
 
-function Home() {
+export default function Home() {
     return (
         <Hero />
     );
 }
-export default Home;
