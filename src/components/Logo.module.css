@@ -1,0 +1,44 @@
+.logo {
+    position: relative;
+    font-weight: 700;
+    font-size: max(1.5rem, 2.5rem, 2.5rem);
+    text-decoration: none;
+    font-family: var(--font-brand);
+    align-items: center;
+}
+
+.text {
+    display: inline-block;
+    position: relative;
+    z-index: 1;
+}
+
+.eyes {
+    position: absolute;
+    top: 59%;
+    left: 38.5%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    gap: 0.5rem;
+    margin-left: 0.5rem;
+    z-index: 2;
+}
+
+.eye {
+    width: 15px;
+    height: 15px;
+    background: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.pupil {
+    width: 7px;
+    height: 7px;
+    background: #1B5978;
+    border-radius: 50%;
+    transition: transform 0.15s ease-out;
+}
