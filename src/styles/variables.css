@@ -1,0 +1,8 @@
+:root {
+    --color-primary: #4f46e5;
+    --color-text: #111;
+    --color-bg: #fff;
+
+    --container-width: 1200px;
+    --font-brand: "Fredoka", system-ui, sans-serif;
+}
