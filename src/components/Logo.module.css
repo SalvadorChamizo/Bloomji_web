@@ -1,4 +1,6 @@
 .logo {
+    grid-column: 2;
+    grid-row: 1;
     position: relative;
     font-weight: 700;
     font-size: max(1.5rem, 2.5rem, 2.5rem);
@@ -15,11 +17,11 @@
 
 .eyes {
     position: absolute;
-    top: 59%;
-    left: 38.5%;
+    top: 0.73em;
+    left: 1.28em;
     transform: translate(-50%, -50%);
     display: flex;
-    gap: 0.5rem;
+    gap: 0.4rem;
     margin-left: 0.5rem;
     z-index: 2;
 }
@@ -38,7 +40,21 @@
 .pupil {
     width: 7px;
     height: 7px;
-    background: #1B5978;
+    background: #2283B0;
     border-radius: 50%;
     transition: transform 0.15s ease-out;
+}
+
+.pupil::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: var(--color-bg);
+    transform: ScaleY(0);
+    transform-origin: top;
+    transition: transform 0.12s ease-in;
+}
+
+.blink .pupil::after {
+    transform: scaleY(1);
 }
