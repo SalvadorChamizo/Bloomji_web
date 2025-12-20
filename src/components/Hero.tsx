@@ -11,7 +11,7 @@ export default function Hero() {
             <Header className={styles.headerOverlay}/>
             <div className={styles.content}>
                 <h1 className={styles.title}>
-                    
+                    Tus plantas están a salvo
                 </h1>
                 <p className={styles.subHeadline}>
                     Bloomji es un dispositivo diseñado para ayudarte a cuidar de tu planta, convirtiéndola en una mascota que interactúa contigo mediante emociones.
