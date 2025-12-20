@@ -55,27 +55,24 @@
 
 .emailCapture {
     display: flex;
-
-    padding: 20px;
-
+    gap: 1rem;
     border-radius: 10px;
     color: #333;
 }
 
-.emailCapture p {
-    text-align: center;
+p {
     font-size: 20px;
     font-weight: bold;
     line-height: 28px;
-    margin-bottom: 3rem;
+    margin-bottom: 1rem;
 }
 
 .emailCapture input {
     border: none;
     border-bottom: 1px solid #d4d4d4;
     padding: 10px;
-    width: 82%;
-    background: transparent;
+    width: 80%;
+    border-radius: 10px;
     transition: all .25s ease;
 }
 
@@ -87,7 +84,7 @@
 
 .emailCapture .ctaButton {
     border-radius: 10px;
-    padding: 12px 25px;
+    padding: 10px 20px;
     display: inline-block;
     font-size: 1rem;
     background-color: #29522E;
@@ -96,8 +93,6 @@
     border: none;
     cursor: pointer;
     font-weight: 700;
-    right: -15px;
-    bottom: -25px;
     box-shadow: -5px 6px 20px 0px rgba(26, 26, 26, 0.4);
     transition: background-color 0.3s ease, transform 0.2 ease;
 }

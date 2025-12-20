@@ -11,14 +11,14 @@ export default function Hero() {
             <Header className={styles.headerOverlay}/>
             <div className={styles.content}>
                 <h1 className={styles.title}>
-                    ¿Quién dijo que las plantas no tienen sentimientos? :(
+                    
                 </h1>
                 <p className={styles.subHeadline}>
                     Bloomji es un dispositivo diseñado para ayudarte a cuidar de tu planta, convirtiéndola en una mascota que interactúa contigo mediante emociones.
                 </p>
                 <p>¡Inscríbete a la waitlist!</p>
                 <div className={styles.emailCapture}>
-                    <input type="email" name="email" className={styles.input} placeholder="Tu e-mail" />
+                    <input type="email" name="email" className={styles.input} placeholder="Dirección de correo" />
                     <button className={styles.ctaButton}>
                         Apúntate ahora
                     </button>
