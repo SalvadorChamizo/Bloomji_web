@@ -41,20 +41,20 @@
     justify-content: center;
     align-items: center;
     z-index: 2;
-    max-width: 700px;
+    max-width: 750px;
     gap: 2rem;
 }
 
 .title {
-    font-size: 1.8rem;
+    font-size: 3rem;
     line-height: 1.2;
     font-weight: 700;
-    font-family: var(--font-text);
+    font-family: var(--font-title);
     margin-bottom: 1.5rem;
 }
 
 .subHeadline {
-    font-family: var(--font-text);
+    font-family: var(--font-title);
     line-height: 1.4rem;
     font-weight: 300;
     margin-bottom: 1.5rem;
@@ -72,7 +72,7 @@ p {
     font-size: 20px;
     font-weight: bold;
     line-height: 28px;
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem;
 }
 
 .emailCapture input {
@@ -92,9 +92,10 @@ p {
 
 .emailCapture .ctaButton {
     border-radius: 10px;
-    padding: 10px 20px;
+    padding: 10px 15px;
     display: inline-block;
     font-size: 1rem;
+    font-family: var(--font-title);
     background-color: #29522E;
     color: white;
     text-decoration: none;
