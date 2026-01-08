@@ -40,7 +40,7 @@
 .pupil {
     width: 7px;
     height: 7px;
-    background: #2283B0;
+    background: #4B6B89;
     border-radius: 50%;
     transition: transform 0.15s ease-out;
 }

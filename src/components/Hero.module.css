@@ -1,50 +1,60 @@
 .hero {
-    display: grid;
+    /* display: grid;
     grid-template-columns: repeat(10, 1fr);
     grid-template-rows: repeat(10, 1fr);
     grid-column-gap: 5px;
-    grid-row-gap: 5px;
+    grid-row-gap: 5px; */
+    display: flex;
     align-items: center;
     justify-content: center;
+    position: relative;
     min-height: 100vh;
     width: 100%;
     background-size: cover;
-    background-position: center;
     background-repeat: no-repeat;
+    background-position: center;
     padding: 2rem 3rem;
     color: white;
     position: relative;
     overflow: hidden;
 }
 
+.hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45); /* adjust opacity */
+    z-index: 0;
+}
+
 .headerOverlay {
     content: "";
     position: absolute;
     top: 0;
-    left: 0;
-    width: 90%;
     z-index: 2;
+    padding: 1rem 0;
 }
 
 .content {
-    grid-column: 2 / 8;
-    grid-row: 2 / span 6;
+/*     grid-column: 3 / 8;
+    grid-row: 3 / span 6; */
+    justify-content: center;
+    align-items: center;
     z-index: 2;
-    max-width: 700px;
-    top: -100px;
-    gap: 0.75rem;
+    max-width: 750px;
+    gap: 2rem;
 }
 
 .title {
-    font-size: 2.5rem;
+    font-size: 3rem;
     line-height: 1.2;
-    font-weight: 400;
-    font-family: var(--font-text);
+    font-weight: 700;
+    font-family: var(--font-title);
     margin-bottom: 1.5rem;
 }
 
 .subHeadline {
-    font-family: var(--font-text);
+    font-family: var(--font-title);
     line-height: 1.4rem;
     font-weight: 300;
     margin-bottom: 1.5rem;
@@ -52,30 +62,25 @@
 
 
 .emailCapture {
-    position: relative;
-    max-width: 400px;
-    padding: 20px;
-    background-color: white;
+    display: flex;
+    gap: 1rem;
     border-radius: 10px;
     color: #333;
 }
 
-.emailCapture p {
-    text-align: center;
+p {
     font-size: 20px;
     font-weight: bold;
     line-height: 28px;
-    margin-bottom: 3rem;
+    margin-bottom: 0.5rem;
 }
 
 .emailCapture input {
-    position: absolute;
-    bottom: 30px;
     border: none;
     border-bottom: 1px solid #d4d4d4;
     padding: 10px;
-    width: 82%;
-    background: transparent;
+    width: 80%;
+    border-radius: 10px;
     transition: all .25s ease;
 }
 
@@ -86,19 +91,17 @@
 }
 
 .emailCapture .ctaButton {
-    position: absolute;
     border-radius: 10px;
-    padding: 12px 25px;
+    padding: 10px 15px;
     display: inline-block;
     font-size: 1rem;
+    font-family: var(--font-title);
     background-color: #29522E;
     color: white;
     text-decoration: none;
     border: none;
     cursor: pointer;
     font-weight: 700;
-    right: -15px;
-    bottom: -25px;
     box-shadow: -5px 6px 20px 0px rgba(26, 26, 26, 0.4);
     transition: background-color 0.3s ease, transform 0.2 ease;
 }

@@ -13,12 +13,12 @@ function Header({ className }: HeaderProps) {
     return (
         <header className={`${styles.header} ${className ?? ""}`}>
 
-            <Logo />
             <nav className={styles.desktopNav}>
                 <ul className={styles.navList}>
                     <li>
                         <NavLink to="/about" className={styles.link}>¿Qué es Bloomji?</NavLink>
                     </li>
+            <Logo />
                     <li>
                         <NavLink to="/Contact" className={styles.link}>Contacto</NavLink>
                     </li>
