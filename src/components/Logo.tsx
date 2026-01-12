@@ -4,7 +4,11 @@ import styles from "./Logo.module.css";
 
 const INACTIVITY_DELAY = 500;
 
-export default function Logo() {
+type LogoProps = {
+    scrolled: boolean;
+};
+
+export default function Logo({ scrolled }: LogoProps) {
     const pupilRefs = useRef<HTMLDivElement[]>([]);
     const inactivityTimer = useRef<number | null>(null);
 
@@ -148,7 +152,7 @@ export default function Logo() {
     return (
         <NavLink 
             to="/" 
-            className={styles.logo}
+            className={`${styles.logo} ${scrolled ? styles.scrolled : ""}`}
             onMouseEnter={() =>  setIsHovering(true)}
             onMouseLeave={() => setIsHovering(false) }
         >

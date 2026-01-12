@@ -37,10 +37,14 @@
     overflow: hidden;
 }
 
+.logo.scrolled .pupil {
+    background: #29522e;
+}
+
 .pupil {
     width: 7px;
     height: 7px;
-    background: #4B6B89;
+    background: #4b6b89;
     border-radius: 50%;
     transition: transform 0.15s ease-out;
 }
