@@ -1,0 +1,101 @@
+.overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.2);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease;
+    z-index: 999;
+}
+
+.overlay.open {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.pane {
+    margin-top: 1rem;
+    position: fixed;
+    top: 0;
+    width: 650px;
+    max-width: 90vw;
+    height: 100vh;
+    border-radius: 1rem;
+    background: oklch(70.352% 0.06188 64.836);
+    z-index: 1000;
+    transform: translateX(100%);
+    transition: transform 0.5s cubic-bezier(.22,1,.36,1);
+
+    display: flex;
+    flex-direction: column;
+
+    filter: drop-shadow(-1px -1px 10px #333537);
+
+    transition:
+        transform 0.8s cubic-bezier(.22,1,.36,1),
+        box-shadow 0.6s ease,
+        opacity 0.4s ease;
+
+    opacity: 1;
+    will-change: transform, box-shadow, opacity;
+
+    /* 3D border effect */
+    border: 3px solid rgba(0, 0, 0, 0.3);
+    box-shadow: 
+        inset -2px -2px 5px rgba(0, 0, 0, 0.5),
+        inset 2px 2px 5px rgba(0, 0, 0, 0.3),
+        -5px -10px 20px rgba(68, 121, 170, 0.3);
+}
+
+.pane::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+
+    background: url("../assets/grain_static_texture.png");
+    opacity: 0.1;
+
+    pointer-events: none;
+}
+
+.pane.left {
+    left: 0;
+    transform: 
+        translateX(-200%)
+        rotate(-25deg)
+        translateY(40px);
+}
+
+.pane.right {
+    right: 0;
+    transform:
+        translateX(120%)
+        rotate(6deg)
+        translateY(40px);
+}
+
+.pane.open {
+    transform: 
+        translateX(0)
+        rotate(-1deg)
+        translateY(0);
+
+    opacity: 1;
+
+    filter: drop-shadow(-5px -10px 10px #4479aa);
+
+}
+
+.closeButton {
+    align-self: flex-end;
+    margin: 1rem;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.content {
+    padding: 2rem;
+    overflow-y: auto;
+}
