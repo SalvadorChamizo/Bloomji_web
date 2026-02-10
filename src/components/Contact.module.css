@@ -30,6 +30,7 @@
   padding: clamp(1rem, 3vh, 2rem) clamp(1rem, 3vw, 2rem);
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
   z-index: 1;
+  margin-top: 30px;
 }
 
 .contactContainer::after {
@@ -177,6 +178,7 @@
   .contactContainer {
     max-width: 100%;
     padding: clamp(0.75rem, 2vh, 1.25rem) clamp(0.75rem, 2vw, 1rem);
+    margin-top: 0;
   }
   
   .contactHeader {
@@ -208,11 +210,13 @@
 @media (max-width: 480px) {
   .contactSheet {
     padding: 0.4rem;
+    margin-top: 20px;
   }
 
   .contactContainer {
     max-width: 100%;
     padding: clamp(0.65rem, 1.5vh, 1rem) clamp(0.65rem, 1.5vw, 0.85rem);
+    margin-top: 0;
   }
 
   .contactHeader {

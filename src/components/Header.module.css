@@ -261,7 +261,7 @@ li::before {
 .clip {
     position: absolute;
     z-index: 10;
-    top: -3%;
+    top: -8%;
     left: 30%;
     margin: 0 auto;
 }
