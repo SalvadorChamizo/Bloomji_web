@@ -1,34 +1,6 @@
 import styles from "./Frame.module.css"
 
 const FRAME_COLOR = "#F6EEE3";
-const FRAME_Z_INDEX = 10000;
-
-const cornerStyle = {
-  height: "24px",
-  width: "24px",
-  transform: "rotate(45deg)",
-  position: "fixed" as const,
-  background: FRAME_COLOR,
-  zIndex: FRAME_Z_INDEX,
-};
-
-const horizontalBarStyle = {
-  height: "1rem",
-  position: "fixed" as const,
-  top: "0",
-  width: "100%",
-  background: FRAME_COLOR,
-  zIndex: FRAME_Z_INDEX,
-};
-
-const verticalBarStyle = {
-  height: "100%",
-  position: "fixed" as const,
-  top: "0",
-  width: "1rem",
-  background: FRAME_COLOR,
-  zIndex: FRAME_Z_INDEX,
-};
 
 function Corner({ top, bottom, left, right }: {
   top?: string;
@@ -38,8 +10,9 @@ function Corner({ top, bottom, left, right }: {
 }) {
   return (
     <div
+      className={styles.corner}
       style={{
-        ...cornerStyle,
+        background: FRAME_COLOR,
         top,
         bottom,
         left,
@@ -55,8 +28,9 @@ function HorizontalBar({ top, bottom }: {
 }) {
   return (
     <div
+      className={styles['horizontal-bar']}
       style={{
-        ...horizontalBarStyle,
+        background: FRAME_COLOR,
         top,
         bottom,
       }}
@@ -70,10 +44,12 @@ function VerticalBar({ left, right }: {
 }) {
   return (
     <div
+      className={styles['vertical-bar']}
       style={{
-        ...verticalBarStyle,
+        background: FRAME_COLOR,
         left,
         right,
+        top: 0,
       }}
     />
   );
