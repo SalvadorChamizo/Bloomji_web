@@ -1,4 +1,5 @@
 import styles from "./SlidingPane.module.css";
+import { useState, useEffect } from "react";
 
 interface SlidingPaneProps {
     isOpen: boolean;
@@ -13,26 +14,51 @@ export default function SlidingPane({
     side = "right",
     children,
 }: SlidingPaneProps) {
+    const [isClosing, setIsClosing] = useState(false);
+    const [shouldRender, setShouldRender] = useState(isOpen);
+
+    useEffect(() => {
+        if (isOpen) {
+            setShouldRender(true);
+            setIsClosing(false);
+        } else if (!isOpen && shouldRender) {
+            setIsClosing(true);
+            
+            const timeout = setTimeout(() => {
+                setIsClosing(false);
+                setShouldRender(false);
+            }, 1500);
+            
+            return () => clearTimeout(timeout);
+        }
+    }, [isOpen, shouldRender]);
+
+    const handleClose = () => {
+        onClose();
+    };
+
+    if (!shouldRender) return null;
+
     return (
         <>
             <div
-                className={`${styles.overlay} ${isOpen ? styles.open : ""}`}
-                onClick={onClose}
+                className={`${styles.overlay} ${isOpen && !isClosing ? styles.open : ""}`}
+                onClick={handleClose}
             />
 
             <aside
                 className={`
                     ${styles.pane}
                     ${styles[side]}
-                    ${isOpen ? styles.open : ""}
+                    ${isOpen && !isClosing ? styles.open : ""}
+                    ${isClosing ? styles.closing : ""}
                 `}
             >
                 <button
                     className={styles.closeButton}
-                    onClick={onClose}
+                    onClick={handleClose}
                     aria-label="Close panel"
                 >
-                    x
                 </button>
             
                 <div className={styles.content}>{children}</div>

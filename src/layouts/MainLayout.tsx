@@ -1,6 +1,8 @@
 import { Outlet, useLocation } from "react-router-dom";
 import { useEffect } from "react";
 import Footer from "../components/Footer";
+import Frame from "../components/Frame";
+import AppFrame from "../components/Frame";
 
 export default function MainLayout() {
     const location = useLocation();
@@ -26,10 +28,11 @@ export default function MainLayout() {
 
     return (
         <>
+
             <main>
                 <Outlet />
             </main>
-            <Footer />
+{/*             <Footer /> */}
         </>
     );
 }

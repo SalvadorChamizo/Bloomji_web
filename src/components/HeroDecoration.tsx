@@ -2,7 +2,7 @@ import cloudImg1 from "../assets/paper_cloud4.svg";
 import cloudImg2 from "../assets/paper_cloud5.svg";
 import cloudImg3 from "../assets/paper_cloud6.svg";
 import cloudImg4 from "../assets/paper_cloud1.svg";
-import saroca from "../assets/sergio_foto.png"
+import bloomjiImg from "../assets/bloomji.png";
 import tree from "../assets/flower_pot_new.svg";
 import { Cloud } from "./Cloud";
 import { Tree } from "./Tree";
@@ -31,8 +31,6 @@ export function HeroDecoration() {
     return (
         <div className={styles.fixedDecorationLayer} aria-hidden>
             
-            {/* BACK clouds */}
-            {/* MID clouds */}
             {isMobile && (
                 <>
                     <Cloud
@@ -65,13 +63,24 @@ export function HeroDecoration() {
                     />
                     <Tree
                         src={tree}
-                        top="110%"
-                        left="80%"
-                        width="50px"
+                        top="90%"
+                        left="0%"
+                        width="400px"
                         opacity={1}
                         blur={0}
                         zIndex={10}
                     />
+                    <div className={styles.bloomjiRoot} style={{ top: "100%", left: "20%", zIndex: 11 }}>
+                        <div
+                            className={styles.treeShape}
+                            style={{
+                                WebkitMaskImage: `url(${bloomjiImg})`,
+                                maskImage: `url(${bloomjiImg})`,
+                            }}
+                        >
+                            <img src={bloomjiImg} className={styles.tree} alt="Bloomji mascot" />
+                        </div>
+                    </div>
                 </>
             )}
             {!isMobile && (
@@ -90,20 +99,6 @@ export function HeroDecoration() {
                     zIndex={8}
                     rotate={-2}
                 />
-{/*                 <Cloud
-                    src={saroca}
-                    top="40%"
-                    right="45%"
-                    width="150px"
-                    opacity={0.95}
-                    blur={0}
-                    floatX={16}
-                    floatY={42}
-                    duration={26}
-                    delay={-12}
-                    zIndex={8}
-                    rotate={-2}
-                /> */}
                 <Cloud
                     src={cloudImg1}
                     top="20%"
@@ -165,6 +160,17 @@ export function HeroDecoration() {
                     blur={0}
                     zIndex={10}
                 />
+                <div className={styles.bloomjiRoot} style={{ top: "105%", left: "70%", zIndex: 11 }}>
+                    <div
+                        className={styles.treeShape}
+                        style={{
+                            WebkitMaskImage: `url(${bloomjiImg})`,
+                            maskImage: `url(${bloomjiImg})`,
+                        }}
+                    >
+                        <img src={bloomjiImg} className={styles.tree} alt="Bloomji mascot" />
+                    </div>
+                </div>
             </>
             )}
         </div>

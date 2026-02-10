@@ -1,11 +1,13 @@
 import styles from "./Contact.module.css";
 import { useState } from "react";
+import { supabase } from "../lib/supabase";
 
 export default function Contact() {
     const [formData, setFormData] = useState({
         name: "",
         email: "",
-        message: ""
+        message: "",
+        company: ""
     });
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
@@ -23,12 +25,57 @@ export default function Contact() {
         setSubmitStatus('idle');
 
         try {
-            // Add your form submission logic here (e.g., API call)
-            await new Promise(resolve => setTimeout(resolve, 1000)); // Simulate API call
+            if (formData.company) {
+                setSubmitStatus('error');
+                setIsSubmitting(false);
+                return;
+            }
+
+            const lastSubmit = localStorage.getItem("lastSubmit");
+            if (lastSubmit && Date.now() - Number(lastSubmit) < 60000) {
+                alert("Espera un momento antes de enviar otro mensaje");
+                setIsSubmitting(false);
+                return;
+            }
+
+            if (formData.message.length < 10) {
+                setSubmitStatus('error');
+                setIsSubmitting(false);
+                return;
+            }
+
+            if (/https?:\/\//i.test(formData.message)) {
+                setSubmitStatus('error');
+                setIsSubmitting(false);
+                return;
+            }
+
+            localStorage.setItem("lastSubmit", Date.now().toString());
+
+            const { error } = await supabase
+                .from("contacts")
+                .insert({
+                    name: formData.name,
+                    email: formData.email,
+                    message: formData.message
+                });
+
+            if (error) {
+                console.error("Supabase error:", error);
+                setSubmitStatus('error');
+                return;
+            }
             
             setSubmitStatus('success');
-            setFormData({ name: "", email: "", company: "", message: "" });
+            setFormData({
+                name: "",
+                email: "",
+                message: "",
+                company: ""
+            });
+
         } catch (error) {
+            console.error("Submission error:", error);
             setSubmitStatus('error');
         } finally {
             setIsSubmitting(false);
@@ -44,6 +91,17 @@ export default function Contact() {
                 </div>
 
                 <form onSubmit={handleSubmit} className={styles.contactForm}>
+
+                    <input
+                        type="text"
+                        name="company"
+                        value={formData.company}
+                        onChange={handleChange}
+                        style={{ display: "none" }}
+                        tabIndex={-1}
+                        autoComplete="off"
+                    />
+
                     <div className={styles.formGroup}>
                         <label htmlFor="name">Nombre *</label>
                         <input
@@ -85,13 +143,13 @@ export default function Contact() {
 
                     {submitStatus === 'success' && (
                         <div className={styles.successMessage}>
-                            Thanks for reaching out! We'll get back to you soon.
+                            ¡Gracias por contactar! Te escribiremos pronto.
                         </div>
                     )}
 
                     {submitStatus === 'error' && (
                         <div className={styles.errorMessage}>
-                            Something went wrong. Please try again.
+                            Algo ha ido mal. Por favor, inténtalo de nuevo.
                         </div>
                     )}
 
@@ -100,7 +158,7 @@ export default function Contact() {
                         className={styles.submitButton}
                         disabled={isSubmitting}
                     >
-                        {isSubmitting ? 'Sending...' : 'Send Message'}
+                        {isSubmitting ? 'Enviando...' : 'Enviar mensaje'}
                     </button>
                 </form>
             </div>

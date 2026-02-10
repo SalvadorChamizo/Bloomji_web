@@ -1,5 +1,3 @@
-
-
 .title {
     display: flex;
     flex-direction: column;
@@ -63,32 +61,60 @@
 
 
 .emailCapture {
-    display: flex;
-    gap: 1rem;
-    border-radius: 10px;
-    color: #333;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: clamp(0.75rem, 2vw, 1rem);
+  border-radius: 10px;
+  color: #333;
+  width: 100%;
+}
+
+.errorMessage {
+  width: 100%;
+  font-size: clamp(0.9rem, 2.5vw, 1rem);
+  font-weight: 600;
+  color: #dc2626;
+  margin-top: 0.5rem;
+  margin-bottom: 0;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 p {
-    font-size: 20px;
-    font-weight: bold;
-    line-height: 28px;
-    margin-bottom: 0.5rem;
+  font-size: clamp(1rem, 3vw, 1.25rem);
+  font-weight: bold;
+  line-height: 1.4;
+  margin-bottom: 0.5rem;
 }
 
 .emailCapture input {
-    border: none;
-    border-bottom: 1px solid #d4d4d4;
-    padding: 10px;
-    width: 80%;
-    border-radius: 10px;
-    transition: all .25s ease;
+  border: none;
+  border-bottom: 1px solid #d4d4d4;
+  padding: clamp(8px, 2vw, 10px);
+  width: 100%;
+  min-width: 0;
+  flex: 1 1 40px;
+  border-radius: 10px;
+  transform-origin: center;
+  transition: all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .emailCapture input:focus {
     outline: none;
     border-bottom: 1px solid #29522E;
     font-family: var(--font-text);
+    transform: scale(1.05);
 }
 
 .emailCapture .ctaButton {
@@ -96,10 +122,10 @@ p {
   align-items: center;
   justify-content: center;
 
-  padding: 10px 15px;
+  padding: clamp(8px, 2vw, 10px) clamp(12px, 3vw, 15px);
   border-radius: 10px;
 
-  font-size: 1rem;
+  font-size: clamp(0.9rem, 2.5vw, 1rem);
   font-family: var(--font-title);
   font-weight: 700;
 
@@ -117,24 +143,10 @@ p {
   will-change: transform;
 
   transition: transform 7s cubic-bezier(.72, .17, .17, 1);
+  
+  flex: 0 1 auto;
+  white-space: nowrap;
 }
-
-/*.emailCapture .ctaButton:hover {
-  transform: rotate(5deg) scale(1.046);
-}
-
-
-.emailCapture .ctaButton:focus-visible {
-  transform: rotate(-5deg) scale(1.046);
-}
-
-.ctaButton:active {
-  transform: rotate(-2deg) scale(1.02);
-}
-
-.ctaButton:focus {
-  box-shadow: rgba(0, 0, 0, .5) 0 0 0 3px;
-}*/
 
 .emailCapture {
     transform: translateX(40px);
@@ -183,4 +195,27 @@ p {
         font-size: 1.3rem;
         padding: 0.7rem 1.2rem;
     }
+}
+
+@media (max-width: 768px) {
+  .emailCapture {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .emailCapture input {
+    width: 100%;
+  }
+
+  .ctaButton {
+    width: 100%;
+    font-size: clamp(1.1rem, 4vw, 1.3rem);
+    padding: clamp(0.6rem, 3vw, 0.7rem) clamp(1rem, 4vw, 1.2rem);
+  }
+}
+
+@media (max-width: 420px) {
+  .ctaButton {
+    min-height: 48px;
+  }
 }

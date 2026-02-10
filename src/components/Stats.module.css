@@ -1,6 +1,19 @@
 .statsSection {
+    position: relative;
     background-color: #f9f9f8;
     padding: 6rem 0;
+    overflow: hidden;
+}
+
+.statsSection::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: url("../assets/beige_texture.webp");
+    background-repeat: repeat;
+    opacity: 0.3;
+    pointer-events: none;
+    mix-blend-mode: multiply;
 }
 
 .container {

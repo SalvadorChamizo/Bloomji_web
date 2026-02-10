@@ -67,19 +67,28 @@ export function CTAButton({ children }: { children: React.ReactNode }) {
 export function EmailCapture() {
     const [email, setEmail] = useState("");
     const [success, setSuccess] = useState(false);
+    const [error, setError] = useState("");
     const loaded = usePageLoad();
 
     const submit = async (e: React.FormEvent) => {
         e.preventDefault();
+        setError("");
 
-        const { error } = await supabase
+        const { error: supabaseError } = await supabase
             .from("waitlist")
             .insert({ email });
 
-        if (!error) {
-            setSuccess(true);
-            setEmail("");
+        if (supabaseError) {
+            if (supabaseError.code === "23505" || supabaseError.message.includes("duplicate")) {
+                setError("Este correo ya está registrado");
+            } else {
+                setError("Hubo un error. Por favor, inténtalo de nuevo");
+            }
+            return;
         }
+
+        setSuccess(true);
+        setEmail("");
     };
 
     if (success) {
@@ -107,6 +116,7 @@ export function EmailCapture() {
             <CTAButton>
                 Apúntate ahora
             </CTAButton>
+            {error && <p className={styles.errorMessage}>{error}</p>}
         </form>
     );
 }

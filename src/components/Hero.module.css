@@ -1,27 +1,25 @@
 .frame {
-position: relative;
-  min-width: 100vw;
-  min-height: 100vh;
-  margin: 0 auto;
-  padding: 1rem 1rem;
+    position: relative;
+    min-width: 100vw;
+    min-height: 100vh;
+    margin: 0 auto;
+    margin-top: -10px;
+    padding: clamp(0.5rem, 2vw, 1rem);
   z-index: 1000;
 }
 
 @media (min-width: 768px) {
   .frame {
     width: 98vw;
-    padding: 1rem 1.5rem;
   }
 }
 
-/* Laptops */
 @media (min-width: 1400px) {
   .frame {
     width: 99vw;
   }
 }
 
-/* Large screens */
 @media (min-width: 1900px) {
   .frame {
     width: 99.2vw;
@@ -30,7 +28,6 @@ position: relative;
 
 .frame::before {
     content: "";
-    position: fixed;
     z-index: -1;
     inset: 0;
     background: #f6eee3;
@@ -45,45 +42,29 @@ position: relative;
 }
 
 .hero {
-    /* display: grid;
-    grid-template-columns: repeat(10, 1fr);
-    grid-template-rows: repeat(10, 1fr);
-    grid-column-gap: 5px;
-    grid-row-gap: 5px; */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    min-height: 700vh;
-    width: 100%;
-    background: #5EADF6;
-    background: linear-gradient(160deg,rgba(94, 173, 246, 1) 0%, rgb(113, 178, 238) 100%);
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    padding: 2rem 3rem;
-    color: white;
-    position: relative;
-    overflow: hidden;
-    border-radius: 1rem;
-    isolation: isolate;
-    z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  min-height: 100vh;
+  width: 100%;
+  background: #5EADF6;
+  background: linear-gradient(160deg,rgba(94, 173, 246, 1) 0%, rgb(113, 178, 238) 100%);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  padding: clamp(1rem, 4vw, 3rem);
+  color: white;
+  position: relative;
+  overflow: hidden;
+  border-radius: clamp(0.5rem, 1.5vw, 1rem);
+  isolation: isolate;
+  z-index: 1;
 }
 
-/* .hero::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background-image: url("../assets/beige_texture.webp");
-    background-repeat: repeat;
-    opacity: 1;
-    pointer-events: none;
-    mix-blend-mode: overlay;
-}
- */
 .hero::before {
     content: "";
-    position: absolute;
+    position: fixed;
     inset: 0;
 
     background: url("../assets/grain_static_texture.png");
@@ -185,12 +166,16 @@ position: relative;
     transform: translateY(0);
 }
 
+.cloudDrag {
+    position: relative;
+    will-change: transform;
+}
+
 .cloudShape {
   position: relative;
   width: 100%;
   height: auto;
 
-  /* Use the image alpha as a mask */
   mask-size: contain;
   mask-repeat: no-repeat;
   mask-position: center;
@@ -242,7 +227,7 @@ position: relative;
 
     bottom: 70%;
     left: 50%;
-    transform: translateX(-50%);
+    transform: translateX(-50%) scaleY(1);
 
     width: 1px;
     height: 120vh;
@@ -316,7 +301,6 @@ position: relative;
 }
 
 .treeShape:hover .tree {
-    /* Make .tree move the same as .treeShape on hover */
     translate: 0px 0px;
     transform: scale(1);
     rotate: 0deg;
@@ -332,7 +316,6 @@ position: relative;
   width: 100%;
   height: auto;
 
-  /* Use the image alpha as a mask */
   mask-size: contain;
   mask-repeat: no-repeat;
   mask-position: center;
@@ -403,24 +386,25 @@ position: relative;
         rotate 0.5s var(--smooth-ease);
 }
 
-@media (min-width: 768px) {
-  .tree:focus {
-    translate: 0px -300px;
-  }
-}
-
-/* Laptops */
-@media (min-width: 1400px) {
-  .tree:focus {
-    translate: 0px -350px;
-  }
-}
-
-/* Large screens */
-@media (min-width: 1900px) {
-  .tree:focus {
+@media (min-width: 769px) and (max-width: 1399px) {
+  .treeShape:focus-within {
     translate: 0px -400px;
   }
+  
+}
+
+@media (min-width: 1400px) {
+  .treeShape:focus-within {
+    translate: 0px -350px;
+  }
+
+}
+
+@media (min-width: 1900px) {
+  .treeShape:focus-within {
+    translate: 0px -400px;
+  }
+
 }
 
 .saint {
@@ -431,6 +415,79 @@ position: relative;
     top: 20%;
     left: 80%;
     filter: drop-shadow(5px 5px 5px #4479aa);
+}
+
+.clickHereWrapper {
+  position: fixed;
+  bottom: 15%;
+  right: 25%;
+  width: 120px;
+  height: 120px;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.clickHere {
+  position: relative;
+  width: 100%;
+  height: auto;
+  opacity: 0.75;
+  pointer-events: none;
+  z-index: 1;
+  filter: brightness(100) saturate(100%) invert(100%) sepia(0%) hue-rotate(180deg);
+}
+
+.bloomjiRoot {
+  position: absolute;
+  pointer-events: auto;
+  filter: drop-shadow(2px 0px 5px #535050);
+  width: clamp(180px, 20vw, 300px);
+  transition: 
+    translate 3s var(--smooth-ease),
+    transform 1s var(--smooth-ease),
+    rotate 1s var(--smooth-ease);
+  will-change: translate, rotate, scale;
+}
+
+.bloomjiRoot img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.fixedDecorationLayer:has(.treeRoot .treeShape:focus-within) .bloomjiRoot {
+  translate: 0px -400px;
+  transform: scale(1.05);
+  rotate: -2deg;
+  transition: 
+      transform 0.5s var(--smooth-ease),
+      scale 0.5s var(--smooth-ease),
+      translate 3s var(--smooth-ease),
+      rotate 0.5s var(--smooth-ease);
+}
+
+@media (max-width: 768px) {
+  .fixedDecorationLayer:has(.treeRoot .treeShape:focus-within) .bloomjiRoot {
+    translate: 0px -200px;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1399px) {
+  .fixedDecorationLayer:has(.treeRoot .treeShape:focus-within) .bloomjiRoot {
+    translate: 0px -400px;
+  }
+}
+
+@media (min-width: 1400px) {
+  .fixedDecorationLayer:has(.treeRoot .treeShape:focus-within) .bloomjiRoot {
+    translate: 0px -350px;
+  }
+}
+
+@media (min-width: 1900px) {
+  .fixedDecorationLayer:has(.treeRoot .treeShape:focus-within) .bloomjiRoot {
+    translate: 0px -400px;
+  }
 }
 
 @keyframes cloudFloat {
@@ -466,16 +523,15 @@ position: relative;
 }
 
 .content {
-/*     grid-column: 3 / 8;
-    grid-row: 3 / span 6; */
-    justify-content: center;
-    align-items: center;
-    z-index: 50;
-    max-width: 750px;
-    gap: 2rem;
-    position: absolute;
-    left: 5%;
-    top: 3%;
+  justify-content: center;
+  align-items: center;
+  z-index: 50;
+  max-width: min(750px, 90vw);
+  gap: clamp(1rem, 3vw, 2rem);
+  position: fixed;
+  left: clamp(2%, 5vw, 5%);
+  top: clamp(3%, 3%);
+  translate: 0 0;
 }
 
 .content {
@@ -483,7 +539,8 @@ position: relative;
     opacity: 0;
     transition:
         transform 0.8s cubic-bezier(.22,1,.36,1),
-        opacity 0.6s ease;
+        opacity 0.6s ease,
+        translate 3s var(--smooth-ease);
     transition-delay: 0.4s;
 }
 
@@ -493,20 +550,20 @@ position: relative;
 }
 
 .title {
-    display: flex;
-    flex-direction: column;
-    font-size: 3rem;
-    line-height: 0.95;
-    font-weight: 700;
-    font-family: var(--font-title);
-    margin-bottom: 1.5rem;
-    z-index: 50;
+  display: flex;
+  flex-direction: column;
+  font-size: clamp(2rem, 5vw, 3rem);
+  line-height: 0.95;
+  font-weight: 700;
+  font-family: var(--font-title);
+  margin-bottom: clamp(1rem, 2vw, 1.5rem);
+  z-index: 50;
 }
 
 .word {
-    display: block;
-    font-size: 4rem;
-    z-index: 100;
+  display: block;
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  z-index: 100;
 }
 
 .word {
@@ -564,21 +621,65 @@ position: relative;
 }
 
 @media (max-width: 768px) {
-    .title {
-        font-size: 2.2rem;
-        margin-bottom: 2rem;
-    }
+  .hero {
+    min-height: 100vh;
+  }
 
-    .subHeadline {
-        margin-bottom: 2rem;
-    }
+  .content {
+    position: static;
+    margin-top: 10vh;
+  }
 
-    p {
-        margin-bottom: 1rem;
-    }
+  .title {
+    font-size: clamp(1.8rem, 6vw, 2.2rem);
+    margin-bottom: clamp(1.5rem, 3vw, 2rem);
+  }
 
-    .ctaButton {
-        font-size: 1.3rem;
-        padding: 0.7rem 1.2rem;
-    }
+  .word {
+    font-size: clamp(3rem, 7vw, 3rem);
+  }
+
+  .subHeadline {
+    margin-bottom: clamp(1.5rem, 3vw, 2rem);
+  }
+
+  p {
+    margin-bottom: 1rem;
+  }
+
+  .ctaButton {
+    font-size: clamp(1.1rem, 4vw, 1.3rem);
+    padding: clamp(0.6rem, 2vw, 0.7rem) clamp(1rem, 3vw, 1.2rem);
+  }
+
+  .clickHere {
+    position: relative;
+    width: 60%;
+    height: auto;
+    opacity: 0.75;
+    pointer-events: none;
+    z-index: 1;
+    filter: brightness(100) saturate(100%) invert(100%) sepia(0%) hue-rotate(180deg);
+  }
+
+  .clickHereWrapper {
+    position: fixed;
+    bottom: 5%;
+    left: 10%;
+    width: 120px;
+    height: 120px;
+    z-index: 1;
+    pointer-events: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero {
+    min-height: 100vh;
+    padding: clamp(0.5rem, 2vw, 1rem);
+  }
+
+  .content {
+    margin-top: 8vh;
+  }
 }
