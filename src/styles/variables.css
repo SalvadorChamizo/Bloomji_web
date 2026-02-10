@@ -1,0 +1,15 @@
+:root {
+    --color-primary: #4f46e5;
+    --color-text: #111;
+    --color-bg: #fff;
+
+    --container-width: 1200px;
+    --font-brand: "Fredoka", system-ui, sans-serif;
+    --font-text: "Poppins", system-ui, sans-serif;
+    --font-title: "Inter", system-ui, sans-serif;
+
+    --default-ease: cubic-bezier(.72, .17, .17, 1);
+    --smooth-ease: cubic-bezier(.32, .72, 0, 1);
+    --bouncy-ease: cubic-bezier(.34, 1.42, .64, 1);
+    --elastic-ease-out: linear( 0, .5737 7.6%, .8382 11.87%, .9463 14.19%, 1.0292 16.54%, 1.0886 18.97%, 1.1258 21.53%, 1.137 22.97%, 1.1424 24.48%, 1.1423 26.1%, 1.1366 27.86%, 1.1165 31.01%, 1.0507 38.62%, 1.0219 42.57%, .9995 46.99%, .9872 51.63%, .9842 58.77%, 1.0011 81.26%, 1 );
+}

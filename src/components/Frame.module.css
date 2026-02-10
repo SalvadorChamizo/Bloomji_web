@@ -1,0 +1,59 @@
+.page-content {
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+/* FRAME SUPERIOR */
+.frame-overlay {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1001;
+
+  background: rgba(0, 0, 0, 0.0);
+
+  /* HUECO INTERIOR REDONDEADO */
+  --r: 24px;   /* radio interior */
+  --m: 1rem;   /* margen del marco */
+
+  -webkit-mask:
+    radial-gradient(circle at top left, transparent var(--r), black calc(var(--r) + 1px)) top left,
+    radial-gradient(circle at top right, transparent var(--r), black calc(var(--r) + 1px)) top right,
+    radial-gradient(circle at bottom left, transparent var(--r), black calc(var(--r) + 1px)) bottom left,
+    radial-gradient(circle at bottom right, transparent var(--r), black calc(var(--r) + 1px)) bottom right,
+    linear-gradient(black 0 0);
+
+  mask:
+    radial-gradient(circle at top left, transparent var(--r), black calc(var(--r) + 1px)) top left,
+    radial-gradient(circle at top right, transparent var(--r), black calc(var(--r) + 1px)) top right,
+    radial-gradient(circle at bottom left, transparent var(--r), black calc(var(--r) + 1px)) bottom left,
+    radial-gradient(circle at bottom right, transparent var(--r), black calc(var(--r) + 1px)) bottom right,
+    linear-gradient(black 0 0);
+
+  -webkit-mask-size:
+    50% 50%,
+    50% 50%,
+    50% 50%,
+    50% 50%,
+    100% 100%;
+
+  mask-size:
+    50% 50%,
+    50% 50%,
+    50% 50%,
+    50% 50%,
+    100% 100%;
+
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+}
+
+.frame-overlay::after {
+  content: "";
+  position: absolute;
+  inset: 1rem;
+  border-radius: 1rem;
+
+  box-shadow: inset 0 0 30px rgba(0,0,0,0.8);
+}

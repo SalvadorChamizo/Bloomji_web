@@ -1,0 +1,83 @@
+.logo {
+    grid-column: 2;
+    grid-row: 1;
+    position: relative;
+    font-weight: 700;
+    font-size: max(1.5rem, 2.5rem, 2.5rem);
+    text-decoration: none;
+    font-family: var(--font-brand);
+    align-items: center;
+    translate: 0 0;
+    transform: scale(1);
+    rotate: 0deg;
+    transition: 
+        translate 1s var(--smooth-ease),
+        transform 1s var(--smooth-ease),
+        rotate 1s var(--smooth-ease);
+    filter: drop-shadow(2px 2px 4px #4479aa);
+}
+
+.logo:hover {
+    translate: 0px -5px;
+    transform: scale(1.1);
+    rotate: -2deg;
+    transition: 
+        transform 0.5s var(--smooth-ease),
+        scale 0.5s var(--smooth-ease),
+        translate 0.5s var(--smooth-ease),
+        rotate 0.5s var(--smooth-ease);
+}
+
+.text {
+    display: inline-block;
+    position: relative;
+    z-index: 1;
+}
+
+.eyes {
+    position: absolute;
+    top: 0.73em;
+    left: 1.28em;
+    transform: translate(-50%, -50%);
+    display: flex;
+    gap: 0.4rem;
+    margin-left: 0.5rem;
+    z-index: 2;
+}
+
+.eye {
+    width: 15px;
+    height: 15px;
+    background: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.logo.scrolled .pupil {
+    background: #478dce;
+}
+
+.pupil {
+    width: 7px;
+    height: 7px;
+    background: #478dce;
+    border-radius: 50%;
+    transition: transform 0.15s ease-out;
+}
+
+.pupil::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: var(--color-bg);
+    transform: ScaleY(0);
+    transform-origin: top;
+    transition: transform 0.12s ease-in;
+}
+
+.blink .pupil::after {
+    transform: scaleY(1);
+}

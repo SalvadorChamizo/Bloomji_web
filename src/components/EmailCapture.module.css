@@ -1,0 +1,221 @@
+.title {
+    display: flex;
+    flex-direction: column;
+    font-size: 3rem;
+    line-height: 0.95;
+    font-weight: 700;
+    font-family: var(--font-title);
+    margin-bottom: 1.5rem;
+    z-index: 50;
+}
+
+.word {
+    display: block;
+    font-size: 4rem;
+    z-index: 100;
+}
+
+.word {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.enter .word {
+  opacity: 1;
+  transform: translateY(0);
+  transition: transform 0.6s ease, opacity 0.6s ease;
+}
+
+.enter .cloud {
+  transform: translateY(0);
+  transition: transform 0.6s ease;
+}
+
+.enter .word:nth-child(1) { transition-delay: 0.2s; }
+.enter .word:nth-child(2) { transition-delay: 0.4s; }
+.enter .word:nth-child(3) { transition-delay: 0.6s; }
+.enter .word:nth-child(4) { transition-delay: 0.8s; }
+.enter .word:nth-child(5) { transition-delay: 1s; }
+.enter .word:nth-child(6) { transition-delay: 1.2s; }
+
+.title {
+    transform: translateX(-40px);
+    opacity: 0;
+    transition:
+        transform 0.9s cubic-bezier(.22,1,.36,1),
+        opacity 0.7s ease;
+    transition-delay: 0.5s;
+}
+
+.title.enter {
+    transform: translateX(0);
+    opacity: 1;
+}
+
+.subHeadline {
+    font-family: var(--font-title);
+    line-height: 1.4rem;
+    font-weight: 400;
+    margin-bottom: 1.5rem;
+}
+
+
+.emailCapture {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: clamp(0.75rem, 2vw, 1rem);
+  border-radius: 10px;
+  color: #333;
+  width: 100%;
+}
+
+.errorMessage {
+  width: 100%;
+  font-size: clamp(0.9rem, 2.5vw, 1rem);
+  font-weight: 600;
+  color: #dc2626;
+  margin-top: 0.5rem;
+  margin-bottom: 0;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+p {
+  font-size: clamp(1rem, 3vw, 1.25rem);
+  font-weight: bold;
+  line-height: 1.4;
+  margin-bottom: 0.5rem;
+}
+
+.emailCapture input {
+  border: none;
+  border-bottom: 1px solid #d4d4d4;
+  padding: clamp(8px, 2vw, 10px);
+  width: 100%;
+  min-width: 0;
+  flex: 1 1 40px;
+  border-radius: 10px;
+  transform-origin: center;
+  transition: all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.emailCapture input:focus {
+    outline: none;
+    border-bottom: 1px solid #29522E;
+    font-family: var(--font-text);
+    transform: scale(1.05);
+}
+
+.emailCapture .ctaButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: clamp(8px, 2vw, 10px) clamp(12px, 3vw, 15px);
+  border-radius: 10px;
+
+  font-size: clamp(0.9rem, 2.5vw, 1rem);
+  font-family: var(--font-title);
+  font-weight: 700;
+
+  color: white;
+  background-image: linear-gradient(#356e3b, #29522E);
+  border: none;
+  cursor: pointer;
+
+  box-shadow: 0 10px 20px rgba(0, 0, 0, .1),
+              0 3px 6px rgba(0, 0, 0, .05);
+
+  transform: rotate(0deg) scale(1);
+  transform-style: preserve-3d;
+  transform-origin: center;
+  will-change: transform;
+
+  transition: transform 7s cubic-bezier(.72, .17, .17, 1);
+  
+  flex: 0 1 auto;
+  white-space: nowrap;
+}
+
+.emailCapture {
+    transform: translateX(40px);
+    opacity: 0;
+    transition:
+        transform 0.9s cubic-bezier(.22,1,.36,1),
+        opacity 0.7s ease;
+    transition-delay: 0.8s;
+}
+
+.emailCapture.enter {
+    transform: translateX(0);
+    opacity: 1;
+}
+
+.emailCaptureSuccess {
+    margin-top: 3rem;
+    transition: opacity 0.7s ease;
+}
+
+@media (max-width: 420px) {
+  .ctaButton {
+    height: 48px;
+  }
+}
+
+.emailCapture .ctaButton:hover {
+    background-color: #2e5d32;
+}
+
+@media (max-width: 768px) {
+    .title {
+        font-size: 2.2rem;
+        margin-bottom: 2rem;
+    }
+
+    .subHeadline {
+        margin-bottom: 2rem;
+    }
+
+    p {
+        margin-bottom: 1rem;
+    }
+
+    .ctaButton {
+        font-size: 1.3rem;
+        padding: 0.7rem 1.2rem;
+    }
+}
+
+@media (max-width: 768px) {
+  .emailCapture {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .emailCapture input {
+    width: 100%;
+  }
+
+  .ctaButton {
+    width: 100%;
+    font-size: clamp(1.1rem, 4vw, 1.3rem);
+    padding: clamp(0.6rem, 3vw, 0.7rem) clamp(1rem, 4vw, 1.2rem);
+  }
+}
+
+@media (max-width: 420px) {
+  .ctaButton {
+    min-height: 48px;
+  }
+}

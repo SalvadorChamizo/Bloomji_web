@@ -1,0 +1,685 @@
+.frame {
+    position: relative;
+    min-width: 100vw;
+    min-height: 100vh;
+    margin: 0 auto;
+    margin-top: -10px;
+    padding: clamp(0.5rem, 2vw, 1rem);
+  z-index: 1000;
+}
+
+@media (min-width: 768px) {
+  .frame {
+    width: 98vw;
+  }
+}
+
+@media (min-width: 1400px) {
+  .frame {
+    width: 99vw;
+  }
+}
+
+@media (min-width: 1900px) {
+  .frame {
+    width: 99.2vw;
+  }
+}
+
+.frame::before {
+    content: "";
+    z-index: -1;
+    inset: 0;
+    background: #f6eee3;
+    filter: drop-shadow(1px 1px 2px #4479aa);
+}
+
+.fixedDecorationLayer {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 100;
+}
+
+.hero {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  min-height: 100vh;
+  width: 100%;
+  background: #5EADF6;
+  background: linear-gradient(160deg,rgba(94, 173, 246, 1) 0%, rgb(113, 178, 238) 100%);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  padding: clamp(1rem, 4vw, 3rem);
+  color: white;
+  position: relative;
+  overflow: hidden;
+  border-radius: clamp(0.5rem, 1.5vw, 1rem);
+  isolation: isolate;
+  z-index: 1;
+}
+
+.hero::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+
+    background: url("../assets/grain_static_texture.png");
+    opacity: 0.05;
+
+    pointer-events: none;
+}
+
+.paperOverlay {
+    background-image: url("../assets/beige_texture.webp");
+    background-repeat: repeat;
+    opacity: 1;
+    mix-blend-mode: multiply;
+}
+
+.paperTag {
+    position: absolute; 
+    background: #579ddf;
+    color: white;
+    border-radius: 2px;
+    filter: drop-shadow(-3px 5px 2px #4479aa);
+    top: 10%;
+    left: 93%;
+    max-height: 3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: var(--font-title);
+    font-weight: 400;
+    font-size: 0.5rem;
+    z-index: 1;
+    translate: 0 0;
+    rotate: 5deg;
+    scale: 1;
+    
+    transition-property: translate, rotate, scale, transform, box-shadow;
+    transition-duration: 0.725s, 0.725s, 0.35s, 0.35s, 0.35s;
+    transition-delay: 0s, 0s, 0s, 0s, 0s;
+    transition-timing-function: 
+    var(--elastic-ease-out),
+    var(--elastic-ease-out),
+    var(--default-ease),
+    var(--default-ease),
+    var(--smooth-ease);
+    will-change: translate, rotate, scale, box-shadow;
+}
+
+.paperTag p {
+    padding: 1rem 1.5rem;
+    margin-bottom: 0;
+    margin-right: 25px;
+}
+
+.paperTag span {
+    margin-left: 5px;
+    font-size: 30px;
+    font-weight: 800;
+}
+
+.paperTag:hover {
+  translate: 10px -5px;
+  rotate: 15deg;
+  scale: 1.015;
+}
+
+.treeRoot {
+    position: absolute;
+    pointer-events: auto;
+
+    transform: translateY(120vh);
+
+    transition:
+        transform 5s cubic-bezier(.22,1,.36,1);
+    
+    filter: drop-shadow(8px 15px 10px #4479aa);
+}
+
+.treeRoot.enter {
+    transform: translateY(0);
+}
+
+.cloudRoot {
+    position: absolute;
+    pointer-events: auto;
+
+    transform: translateY(-120vh);
+
+    transition:
+        transform 4s cubic-bezier(.22,1,.36,1);
+
+    filter: drop-shadow(5px 15px 10px #4479aa);
+}
+
+.cloudRoot {
+    transition-delay: var(--enter-delay, 0s);
+}
+
+.cloudRoot.enter {
+    transform: translateY(0);
+}
+
+.cloudDrag {
+    position: relative;
+    will-change: transform;
+}
+
+.cloudShape {
+  position: relative;
+  width: 100%;
+  height: auto;
+
+  mask-size: contain;
+  mask-repeat: no-repeat;
+  mask-position: center;
+
+  -webkit-mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+}
+
+.cloudShape::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  background-image: url("../assets/grain_static_texture.png");
+  background-repeat: repeat;
+
+  opacity: 0.05;
+
+  pointer-events: none;
+}
+
+.cloudShape:hover {
+    transform: scale(1.1);
+
+      filter:
+    drop-shadow(2px 4px 6px rgba(0,0,0,0.15))
+    drop-shadow(0 0 2px rgba(255,255,255,0.4));
+}
+
+.cloudShape {
+  transition:
+    transform 0.35s var(--elastic-ease-out),
+    filter 0.35s var(--smooth-ease);
+
+    filter: drop-shadow(5px 15px 10px #4479aa);
+}
+
+.cloudFloat {
+    animation: cloudFloat var(--float-duration, 10s)
+        ease-in-out infinite;
+    animation-delay: var(--float-delay, 0s);
+    will-change: transform;
+}
+
+.cloudFloat::before {
+    content: "";
+    position: absolute;
+
+    bottom: 70%;
+    left: 50%;
+    transform: translateX(-50%) scaleY(1);
+
+    width: 1px;
+    height: 120vh;
+
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0.5));
+
+    pointer-events: none;
+    z-index: -1;
+}
+
+.cloudFload::before:hover {
+    width: 2px
+}
+
+.cloudRotate {
+    transform: rotate(var(--rotate, 0deg));
+}
+
+.cloud {
+    display: block;
+    width: 100%;
+    aspect-ratio: 2000 / 1800;
+    object-fit: contain;
+    mix-blend-mode: screen;
+    translate: 0 0;
+    rotate: 0deg;
+    scale: 1;
+
+    filter: drop-shadow(1px 1px 3px #4479aa);
+
+    transition-property: translate, scale, transform, box-shadow;
+    transition-duration: 0.725s, 0.35s, 0.35s, 0.35s;
+    transition-delay: 0s, 0s, 0s, 0s;
+    transition-timing-function: 
+        var(--elastic-ease-out),
+        var(--elastic-ease-out),
+        var(--default-ease),
+        var(--default-ease),
+        var(--smooth-ease);
+    will-change: translate, rotate, scale, box-shadow;
+}
+
+.cloud::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+
+    background: url("../assets/grain_static_texture.png");
+    opacity: 0.1;
+
+    pointer-events: none;
+}
+
+.cloud:hover {
+  translate: 0px 0px;
+  rotate: 0deg;
+  scale: 1.1;
+}
+
+.tree {
+    position: relative;
+    width: 100%;
+    height: auto;
+    translate: 0 0;
+    rotate: 0deg;
+    transition: 
+    translate 3s var(--smooth-ease),
+    transform 1s var(--smooth-ease),
+    rotate 1s var(--smooth-ease);
+    will-change: translate, rotate, scale, box-shadow;
+}
+
+.treeShape:hover .tree {
+    translate: 0px 0px;
+    transform: scale(1);
+    rotate: 0deg;
+    transition: 
+        transform 0.5s var(--smooth-ease),
+        scale 0.5s var(--smooth-ease),
+        translate 1s var(--smooth-ease),
+        rotate 0.5s var(--smooth-ease);
+}
+
+.treeShape {
+  position: relative;
+  width: 100%;
+  height: auto;
+
+  mask-size: contain;
+  mask-repeat: no-repeat;
+  mask-position: center;
+
+  -webkit-mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+
+    translate: 0 0;
+    rotate: 0deg;
+    transition: 
+    translate 3s var(--smooth-ease),
+    transform 1s var(--smooth-ease),
+    rotate 1s var(--smooth-ease);
+    will-change: translate, rotate, scale, box-shadow;
+}
+
+.treeShape::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  background-image: url("../assets/grain_static_texture.png");
+  background-repeat: repeat;
+
+  opacity: 0.05;
+
+  pointer-events: none;
+    translate: 0 0;
+    rotate: 0deg;
+    transition: 
+    translate 3s var(--smooth-ease),
+    transform 1s var(--smooth-ease),
+    rotate 1s var(--smooth-ease);
+    will-change: translate, rotate, scale, box-shadow;
+}
+
+.treeShape:hover {
+    translate: 0px -30px;
+    transform: scale(1.01);
+    rotate: -3deg;
+    transition: 
+        transform 0.5s var(--smooth-ease),
+        scale 0.5s var(--smooth-ease),
+        translate 1s var(--smooth-ease),
+        rotate 0.5s var(--smooth-ease);
+}
+
+.treeShape:focus-within {
+    translate: 0px -400px;
+    transform: scale(1.05);
+    rotate: -2deg;
+    transition: 
+        transform 0.5s var(--smooth-ease),
+        scale 0.5s var(--smooth-ease),
+        translate 3s var(--smooth-ease),
+        rotate 0.5s var(--smooth-ease);
+}
+
+.treeShape:focus-within .tree {
+    translate: 0px 0px;
+    transform: scale(1);
+    rotate: 0deg;
+    transition: 
+        transform 0.5s var(--smooth-ease),
+        scale 0.5s var(--smooth-ease),
+        translate 3s var(--smooth-ease),
+        rotate 0.5s var(--smooth-ease);
+}
+
+@media (min-width: 769px) and (max-width: 1399px) {
+  .treeShape:focus-within {
+    translate: 0px -400px;
+  }
+  
+}
+
+@media (min-width: 1400px) {
+  .treeShape:focus-within {
+    translate: 0px -350px;
+  }
+
+}
+
+@media (min-width: 1900px) {
+  .treeShape:focus-within {
+    translate: 0px -400px;
+  }
+
+}
+
+.saint {
+    max-height: 500px;
+    rotate: 20deg;
+    z-index: 9;
+    position: absolute;
+    top: 20%;
+    left: 80%;
+    filter: drop-shadow(5px 5px 5px #4479aa);
+}
+
+.clickHereWrapper {
+  position: fixed;
+  bottom: 15%;
+  right: 25%;
+  width: 120px;
+  height: 120px;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.clickHere {
+  position: relative;
+  width: 100%;
+  height: auto;
+  opacity: 0.75;
+  pointer-events: none;
+  z-index: 1;
+  filter: brightness(100) saturate(100%) invert(100%) sepia(0%) hue-rotate(180deg);
+}
+
+.bloomjiRoot {
+  position: absolute;
+  pointer-events: auto;
+  filter: drop-shadow(2px 0px 5px #535050);
+  width: clamp(180px, 20vw, 300px);
+  transition: 
+    translate 3s var(--smooth-ease),
+    transform 1s var(--smooth-ease),
+    rotate 1s var(--smooth-ease);
+  will-change: translate, rotate, scale;
+}
+
+.bloomjiRoot img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.fixedDecorationLayer:has(.treeRoot .treeShape:focus-within) .bloomjiRoot {
+  translate: 0px -400px;
+  transform: scale(1.05);
+  rotate: -2deg;
+  transition: 
+      transform 0.5s var(--smooth-ease),
+      scale 0.5s var(--smooth-ease),
+      translate 3s var(--smooth-ease),
+      rotate 0.5s var(--smooth-ease);
+}
+
+@media (max-width: 768px) {
+  .fixedDecorationLayer:has(.treeRoot .treeShape:focus-within) .bloomjiRoot {
+    translate: 0px -200px;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1399px) {
+  .fixedDecorationLayer:has(.treeRoot .treeShape:focus-within) .bloomjiRoot {
+    translate: 0px -400px;
+  }
+}
+
+@media (min-width: 1400px) {
+  .fixedDecorationLayer:has(.treeRoot .treeShape:focus-within) .bloomjiRoot {
+    translate: 0px -350px;
+  }
+}
+
+@media (min-width: 1900px) {
+  .fixedDecorationLayer:has(.treeRoot .treeShape:focus-within) .bloomjiRoot {
+    translate: 0px -400px;
+  }
+}
+
+@keyframes cloudFloat {
+  0% {
+    transform:
+      translate3d(0, 0, 0)
+      rotate(var(--rotate, 0deg));
+  }
+
+  50% {
+    transform:
+      translate3d(
+        var(--float-x, 10px),
+        calc(var(--float-y, 6px) * -1),
+        0
+      )
+      rotate(var(--rotate, 0deg));
+  }
+
+  100% {
+    transform:
+      translate3d(0, 0, 0)
+      rotate(var(--rotate, 0deg));
+  }
+}
+
+.headerOverlay {
+    content: "";
+    position: absolute;
+    top: 0;
+    z-index: 2;
+    padding: 1rem 0;
+}
+
+.content {
+  justify-content: center;
+  align-items: center;
+  z-index: 50;
+  max-width: min(750px, 90vw);
+  gap: clamp(1rem, 3vw, 2rem);
+  position: fixed;
+  left: clamp(2%, 5vw, 5%);
+  top: clamp(3%, 3%);
+  translate: 0 0;
+}
+
+.content {
+    transform: translateY(40px);
+    opacity: 0;
+    transition:
+        transform 0.8s cubic-bezier(.22,1,.36,1),
+        opacity 0.6s ease,
+        translate 3s var(--smooth-ease);
+    transition-delay: 0.4s;
+}
+
+.content.enter {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.title {
+  display: flex;
+  flex-direction: column;
+  font-size: clamp(2rem, 5vw, 3rem);
+  line-height: 0.95;
+  font-weight: 700;
+  font-family: var(--font-title);
+  margin-bottom: clamp(1rem, 2vw, 1.5rem);
+  z-index: 50;
+}
+
+.word {
+  display: block;
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  z-index: 100;
+}
+
+.word {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.enter .word {
+  opacity: 1;
+  transform: translateY(0);
+  transition: transform 0.6s ease, opacity 0.6s ease;
+}
+
+.enter .cloud {
+  transform: translateY(0);
+  transition: transform 0.6s ease;
+}
+
+.enter .word:nth-child(1) { transition-delay: 0.2s; }
+.enter .word:nth-child(2) { transition-delay: 0.4s; }
+.enter .word:nth-child(3) { transition-delay: 0.6s; }
+.enter .word:nth-child(4) { transition-delay: 0.8s; }
+.enter .word:nth-child(5) { transition-delay: 1s; }
+.enter .word:nth-child(6) { transition-delay: 1.2s; }
+
+.title {
+    transform: translateX(-40px);
+    opacity: 0;
+    transition:
+        transform 0.9s cubic-bezier(.22,1,.36,1),
+        opacity 0.7s ease;
+    transition-delay: 0.5s;
+}
+
+.title.enter {
+    transform: translateX(0);
+    opacity: 1;
+}
+
+.subHeadline {
+    font-family: var(--font-title);
+    line-height: 1.4rem;
+    font-weight: 400;
+    margin-bottom: 1.5rem;
+}
+
+@media (max-width: 420px) {
+  .ctaButton {
+    height: 48px;
+  }
+}
+
+.emailCapture .ctaButton:hover {
+    background-color: #2e5d32;
+}
+
+@media (max-width: 768px) {
+  .hero {
+    min-height: 100vh;
+  }
+
+  .content {
+    position: static;
+    margin-top: 10vh;
+  }
+
+  .title {
+    font-size: clamp(1.8rem, 6vw, 2.2rem);
+    margin-bottom: clamp(1.5rem, 3vw, 2rem);
+  }
+
+  .word {
+    font-size: clamp(3rem, 7vw, 3rem);
+  }
+
+  .subHeadline {
+    margin-bottom: clamp(1.5rem, 3vw, 2rem);
+  }
+
+  p {
+    margin-bottom: 1rem;
+  }
+
+  .ctaButton {
+    font-size: clamp(1.1rem, 4vw, 1.3rem);
+    padding: clamp(0.6rem, 2vw, 0.7rem) clamp(1rem, 3vw, 1.2rem);
+  }
+
+  .clickHere {
+    position: relative;
+    width: 60%;
+    height: auto;
+    opacity: 0.75;
+    pointer-events: none;
+    z-index: 1;
+    filter: brightness(100) saturate(100%) invert(100%) sepia(0%) hue-rotate(180deg);
+  }
+
+  .clickHereWrapper {
+    position: fixed;
+    bottom: 5%;
+    left: 10%;
+    width: 120px;
+    height: 120px;
+    z-index: 1;
+    pointer-events: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero {
+    min-height: 100vh;
+    padding: clamp(0.5rem, 2vw, 1rem);
+  }
+
+  .content {
+    margin-top: 8vh;
+  }
+}
