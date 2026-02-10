@@ -216,11 +216,12 @@
   .contactContainer {
     max-width: 100%;
     padding: clamp(0.65rem, 1.5vh, 1rem) clamp(0.65rem, 1.5vw, 0.85rem);
-    margin-top: 0;
+    margin-top: 10px;
   }
 
   .contactHeader {
     margin-bottom: clamp(0.4rem, 1vh, 0.75rem);
+    margin-top: clamp(0.4rem, 1vh, 0.75rem);
   }
 
   .contactHeader h2 {
