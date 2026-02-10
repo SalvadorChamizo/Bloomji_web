@@ -81,3 +81,45 @@
 .blink .pupil::after {
     transform: scaleY(1);
 }
+
+@media (max-width: 768px) {
+  .logo {
+    font-size: clamp(1.5rem, 5vw, 2rem);
+  }
+
+  .eyes {
+    gap: 0.3rem;
+    margin-left: 0.3rem;
+  }
+
+  .eye {
+    width: 12px;
+    height: 12px;
+  }
+
+  .pupil {
+    width: 5px;
+    height: 5px;
+  }
+}
+
+@media (max-width: 480px) {
+  .logo {
+    font-size: clamp(2rem, 6vw, 2rem);
+  }
+
+  .eyes {
+    gap: 0.5rem;
+    margin-left: 0.40rem;
+  }
+
+  .eye {
+    width: 10px;
+    height: 10px;
+  }
+
+  .pupil {
+    width: 6px;
+    height: 6px;
+  }
+}
