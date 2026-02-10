@@ -446,7 +446,7 @@
   position: absolute;
   pointer-events: auto;
   filter: drop-shadow(2px 0px 5px #535050);
-  width: clamp(180px, 20vw, 300px);
+  width: clamp(180px, 20vw, 250px);
   transition: 
     translate 3s var(--smooth-ease),
     transform 1s var(--smooth-ease),
@@ -472,7 +472,7 @@
 }
 
 .hero:has(.fixedDecorationLayer .treeShape:focus-within) .content {
-  translate: 0 -400px;
+  translate: 0 0;
   transition: translate 3s var(--smooth-ease);
 }
 
@@ -492,7 +492,7 @@
   }
 
   .hero:has(.fixedDecorationLayer .treeShape:focus-within) .content {
-    translate: 0 -400px;
+    translate: 0 0;
   }
 }
 
@@ -502,7 +502,7 @@
   }
 
   .hero:has(.fixedDecorationLayer .treeShape:focus-within) .content {
-    translate: 0 -350px;
+    translate: 0 0;
   }
 }
 
@@ -512,7 +512,7 @@
   }
 
   .hero:has(.fixedDecorationLayer .treeShape:focus-within) .content {
-    translate: 0 -400px;
+    translate: 0 0;
   }
 }
 
