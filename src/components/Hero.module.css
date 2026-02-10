@@ -45,7 +45,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  position: fixed;
   min-height: 100vh;
   width: 100%;
   background: #5EADF6;
@@ -386,6 +385,12 @@
         rotate 0.5s var(--smooth-ease);
 }
 
+@media (max-width: 768px) {
+  .treeShape:focus-within {
+    translate: 0px -200px;
+  }
+}
+
 @media (min-width: 769px) and (max-width: 1399px) {
   .treeShape:focus-within {
     translate: 0px -400px;
@@ -395,7 +400,7 @@
 
 @media (min-width: 1400px) {
   .treeShape:focus-within {
-    translate: 0px -350px;
+    translate: 0px -400px;
   }
 
 }
@@ -466,9 +471,18 @@
       rotate 0.5s var(--smooth-ease);
 }
 
+.hero:has(.fixedDecorationLayer .treeShape:focus-within) .content {
+  translate: 0 -400px;
+  transition: translate 3s var(--smooth-ease);
+}
+
 @media (max-width: 768px) {
   .fixedDecorationLayer:has(.treeRoot .treeShape:focus-within) .bloomjiRoot {
     translate: 0px -200px;
+  }
+
+  .hero:has(.fixedDecorationLayer .treeShape:focus-within) .content {
+    translate: 0 -170px;
   }
 }
 
@@ -476,17 +490,29 @@
   .fixedDecorationLayer:has(.treeRoot .treeShape:focus-within) .bloomjiRoot {
     translate: 0px -400px;
   }
+
+  .hero:has(.fixedDecorationLayer .treeShape:focus-within) .content {
+    translate: 0 -400px;
+  }
 }
 
 @media (min-width: 1400px) {
   .fixedDecorationLayer:has(.treeRoot .treeShape:focus-within) .bloomjiRoot {
     translate: 0px -350px;
   }
+
+  .hero:has(.fixedDecorationLayer .treeShape:focus-within) .content {
+    translate: 0 -350px;
+  }
 }
 
 @media (min-width: 1900px) {
   .fixedDecorationLayer:has(.treeRoot .treeShape:focus-within) .bloomjiRoot {
     translate: 0px -400px;
+  }
+
+  .hero:has(.fixedDecorationLayer .treeShape:focus-within) .content {
+    translate: 0 -400px;
   }
 }
 
@@ -528,7 +554,7 @@
   z-index: 50;
   max-width: min(750px, 90vw);
   gap: clamp(1rem, 3vw, 2rem);
-  position: fixed;
+  position: absolute;
   left: clamp(2%, 5vw, 5%);
   top: clamp(3%, 3%);
   translate: 0 0;
