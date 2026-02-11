@@ -27,17 +27,24 @@ function useMediaQuery(query: string): boolean {
 
 export function HeroDecoration() {
     const isMobile = useMediaQuery("(max-width: 768px)");
+    const isTablet = useMediaQuery("(min-width: 769px) and (max-width: 1399px)");
+
+    const cloudSizes = isMobile
+        ? { small: "160px", medium: "180px", large: "200px" }
+        : isTablet
+        ? { small: "130px", medium: "150px", large: "170px" }
+        : { small: "200px", medium: "230px", large: "250px" };
 
     return (
         <div className={styles.fixedDecorationLayer} aria-hidden>
-            
+
             {isMobile && (
                 <>
                     <Cloud
                         src={cloudImg2}
                         top="8%"
-                        left="-20%%"
-                        width="200px"
+                        left="-20%"
+                        width={cloudSizes.large}
                         opacity={0.95}
                         blur={0}
                         floatX={16}
@@ -52,7 +59,7 @@ export function HeroDecoration() {
                         src={cloudImg1}
                         top="40%"
                         right="0%"
-                        width="190px"
+                        width={cloudSizes.medium}
                         opacity={0.95}
                         blur={0}
                         floatX={-20}
@@ -61,6 +68,7 @@ export function HeroDecoration() {
                         delay={-7}
                         zIndex={9}
                     />
+
                     <Tree
                         src={tree}
                         top="90%"
@@ -70,6 +78,7 @@ export function HeroDecoration() {
                         blur={0}
                         zIndex={10}
                     />
+
                     <div className={styles.bloomjiRoot} style={{ top: "100%", left: "20%", zIndex: 11 }}>
                         <div
                             className={styles.treeShape}
@@ -83,96 +92,103 @@ export function HeroDecoration() {
                     </div>
                 </>
             )}
+
             {!isMobile && (
                 <>
-                <Cloud
-                    src={cloudImg2}
-                    top="15%"
-                    right="10%"
-                    width="250px"
-                    opacity={0.95}
-                    blur={0}
-                    floatX={16}
-                    floatY={42}
-                    duration={26}
-                    delay={-12}
-                    zIndex={8}
-                    rotate={-2}
-                />
-                <Cloud
-                    src={cloudImg1}
-                    top="20%"
-                    left="30%"
-                    width="200px"
-                    opacity={0.95}
-                    blur={0}
-                    floatX={25}
-                    floatY={12}
-                    duration={22}
-                    delay={-4}
-                    zIndex={4}
-                />
-                <Cloud
-                    src={cloudImg4}
-                    top="0.2%"
-                    left="5%"
-                    width="220px"
-                    opacity={1}
-                    blur={0}
-                    floatX={-32}
-                    floatY={12}
-                    duration={18}
-                    delay={-9}
-                    zIndex={6}
-                />
-                <Cloud
-                    src={cloudImg3}
-                    top="40%"
-                    left="55%"
-                    width="230px"
-                    opacity={0.95}
-                    blur={0}
-                    floatX={-20}
-                    floatY={2}
-                    duration={30}
-                    delay={-7}
-                    zIndex={9}
-                />
-                <Cloud
-                    src={cloudImg1}
-                    top="50%"
-                    left="90%"
-                    width="200px"
-                    opacity={0.95}
-                    blur={0}
-                    floatX={-20}
-                    floatY={2}
-                    duration={30}
-                    delay={-7}
-                    zIndex={9}
-                />
-                <Tree
-                    src={tree}
-                    top="84%"
-                    left="60%"
-                    width="700px"
-                    opacity={1}
-                    blur={0}
-                    zIndex={10}
-                />
-                <div className={styles.bloomjiRoot} style={{ top: "105%", left: "70%", zIndex: 11 }}>
-                    <div
-                        className={styles.treeShape}
-                        style={{
-                            WebkitMaskImage: `url(${bloomjiImg})`,
-                            maskImage: `url(${bloomjiImg})`,
-                        }}
-                    >
-                        <img src={bloomjiImg} className={styles.tree} alt="Bloomji mascot" />
+                    <Cloud
+                        src={cloudImg2}
+                        top="15%"
+                        right="10%"
+                        width={cloudSizes.large}
+                        opacity={0.95}
+                        blur={0}
+                        floatX={16}
+                        floatY={42}
+                        duration={26}
+                        delay={-12}
+                        zIndex={8}
+                        rotate={-2}
+                    />
+
+                    <Cloud
+                        src={cloudImg1}
+                        top="20%"
+                        left="30%"
+                        width={cloudSizes.small}
+                        opacity={0.95}
+                        blur={0}
+                        floatX={25}
+                        floatY={12}
+                        duration={22}
+                        delay={-4}
+                        zIndex={4}
+                    />
+
+                    <Cloud
+                        src={cloudImg4}
+                        top="0.2%"
+                        left="5%"
+                        width={cloudSizes.medium}
+                        opacity={1}
+                        blur={0}
+                        floatX={-32}
+                        floatY={12}
+                        duration={18}
+                        delay={-9}
+                        zIndex={6}
+                    />
+
+                    <Cloud
+                        src={cloudImg3}
+                        top="40%"
+                        left="55%"
+                        width={cloudSizes.medium}
+                        opacity={0.95}
+                        blur={0}
+                        floatX={-20}
+                        floatY={2}
+                        duration={30}
+                        delay={-7}
+                        zIndex={9}
+                    />
+
+                    <Cloud
+                        src={cloudImg1}
+                        top="50%"
+                        left="90%"
+                        width={cloudSizes.small}
+                        opacity={0.95}
+                        blur={0}
+                        floatX={-20}
+                        floatY={2}
+                        duration={30}
+                        delay={-7}
+                        zIndex={9}
+                    />
+
+                    <Tree
+                        src={tree}
+                        top="84%"
+                        left="60%"
+                        width={isTablet ? "550px" : "700px"}
+                        opacity={1}
+                        blur={0}
+                        zIndex={10}
+                    />
+
+                    <div className={styles.bloomjiRoot} style={{ top: "105%", left: "70%", zIndex: 11 }}>
+                        <div
+                            className={styles.treeShape}
+                            style={{
+                                WebkitMaskImage: `url(${bloomjiImg})`,
+                                maskImage: `url(${bloomjiImg})`,
+                            }}
+                        >
+                            <img src={bloomjiImg} className={styles.tree} alt="Bloomji mascot" />
+                        </div>
                     </div>
-                </div>
-            </>
+                </>
             )}
         </div>
-    )
+    );
 }

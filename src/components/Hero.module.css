@@ -446,17 +446,23 @@
   position: absolute;
   pointer-events: auto;
   filter: drop-shadow(2px 0px 5px #535050);
+
   width: clamp(180px, 20vw, 250px);
+  max-height: 60vh;
+
   transition: 
     translate 3s var(--smooth-ease),
     transform 1s var(--smooth-ease),
     rotate 1s var(--smooth-ease);
+
   will-change: translate, rotate, scale;
 }
 
 .bloomjiRoot img {
   width: 100%;
   height: auto;
+  max-height: 100%;
+  object-fit: contain;
   display: block;
 }
 
@@ -477,6 +483,12 @@
 }
 
 @media (max-width: 768px) {
+
+  .bloomjiRoot {
+    width: clamp(90px, 28vw, 140px);
+    max-height: 45vh;
+  }
+
   .fixedDecorationLayer:has(.treeRoot .treeShape:focus-within) .bloomjiRoot {
     translate: 0px -200px;
   }
@@ -487,6 +499,12 @@
 }
 
 @media (min-width: 769px) and (max-width: 1399px) {
+
+  .bloomjiRoot {
+    width: clamp(120px, 16vw, 180px);
+    max-height: 50vh;
+  }
+
   .fixedDecorationLayer:has(.treeRoot .treeShape:focus-within) .bloomjiRoot {
     translate: 0px -400px;
   }
@@ -497,6 +515,12 @@
 }
 
 @media (min-width: 1400px) {
+
+  .bloomjiRoot {
+    width: clamp(180px, 20vw, 250px);
+    max-height: 60vh;
+  }
+
   .fixedDecorationLayer:has(.treeRoot .treeShape:focus-within) .bloomjiRoot {
     translate: 0px -350px;
   }
@@ -507,6 +531,7 @@
 }
 
 @media (min-width: 1900px) {
+
   .fixedDecorationLayer:has(.treeRoot .treeShape:focus-within) .bloomjiRoot {
     translate: 0px -400px;
   }
